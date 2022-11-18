@@ -15,7 +15,7 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  OpenWRTBuilder:
+  Workflow:
     # The type of runner that the job will run on
     runs-on: ubuntu-22.04
 
@@ -54,10 +54,10 @@ jobs:
           make download -j8
 
       # 编译固件
-      - name: Compile Firmware
-        run: |
-          cd OpenWRT
-          make V=s -j1
+      # - name: Compile Firmware
+      #   run: |
+      #     cd OpenWRT
+      #     make V=s -j1
 
       # 上传固件
       - name: Upload Firmware
