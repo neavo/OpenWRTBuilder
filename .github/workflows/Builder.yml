@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Builder
+name: OpenWRTBuilder
 
 # Controls when the workflow will run
 on:
@@ -15,7 +15,7 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  OpenWRTBuilder:
     # The type of runner that the job will run on
     runs-on: ubuntu-22.04
 
@@ -36,11 +36,18 @@ jobs:
         run: |
           git clone $REPOSITORY_URL -b $REPOSITORY_BRANCH OpenWRT
           cd OpenWRT
+          git checkout $REPOSITORY_COMMIT_ID
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
+      # 加载配置
+      - name: Load Config
+        run: |
+          rm -rf OpenWRT/.config
+          mv .config OpenWRT/.config
+
       # 下载依赖
-      - name: Donwload Package
+      - name: Download Package
         run: |
           cd OpenWRT
           make defconfig
@@ -51,3 +58,10 @@ jobs:
         run: |
           cd OpenWRT
           make V=s -j1
+
+      # 上传固件
+      - name: Upload Firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: config.ini
+          path: OpenWRT/.config
