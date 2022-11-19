@@ -50,7 +50,7 @@ jobs:
 
       # 克隆源码 STEP.02
       - name: Clone Repository STEP.02
-        if: inputs.ssh != 'lastest'
+        if: inputs.REPOSITORY_COMMIT_ID != 'lastest'
         run: |
           cd OpenWRT
           git checkout $REPOSITORY_COMMIT_ID
