@@ -5,11 +5,21 @@ name: OpenWRTBuilder
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      VERSION_NAME:
+        description: '版本名称'
+        type: string
+        required: true
+        default: 'firmware'
+      REPOSITORY_COMMIT_ID:
+        description: 'Commit ID'
+        type: string
+        required: true
 
 env:
   REPOSITORY_URL: https://github.com/coolsnowwolf/lede
   REPOSITORY_BRANCH: master
-  REPOSITORY_COMMIT_ID: b1b6cd41bb9d4f63ab2870177cbaf5031d41aea5
+  REPOSITORY_COMMIT_ID: ${{ inputs.REPOSITORY_COMMIT_ID }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -58,11 +68,11 @@ jobs:
       - name: Compile Firmware
         run: |
           cd OpenWRT
-          make V=s -j1
+          make -j$(nproc)
 
       # 上传固件
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: firmware
+          name: ${{ inputs.VERSION_NAME }}
           path: OpenWRT/bin
