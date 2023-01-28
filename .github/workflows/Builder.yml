@@ -7,19 +7,29 @@ on:
   workflow_dispatch:
     inputs:
       VERSION_NAME:
-        description: '版本名称'
+        description: "版本名称"
         type: string
         required: true
-        default: 'firmware'
+        default: "firmware"
+      REPOSITORY_URL:
+        description: "Url"
+        type: string
+        required: true
+        default: "https://github.com/coolsnowwolf/lede"
+      REPOSITORY_BRANCH:
+        description: "Branch"
+        type: string
+        required: true
+        default: "master"
       REPOSITORY_COMMIT_ID:
-        description: 'Commit ID'
+        description: "Commit ID"
         type: string
         required: true
-        default: 'lastest'
+        default: "lastest"
 
 env:
-  REPOSITORY_URL: https://github.com/coolsnowwolf/lede
-  REPOSITORY_BRANCH: master
+  REPOSITORY_URL: ${{ inputs.REPOSITORY_URL }}
+  REPOSITORY_BRANCH: ${{ inputs.REPOSITORY_BRANCH }}
   REPOSITORY_COMMIT_ID: ${{ inputs.REPOSITORY_COMMIT_ID }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
