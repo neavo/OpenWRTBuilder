@@ -26,6 +26,11 @@ on:
         type: string
         required: true
         default: "lastest"
+      LOAD_CUSTOM_CONFIG_FILE:
+        description: "配置文件"
+        type: string
+        required: true
+        default: ".config"
 
 env:
   REPOSITORY_URL: ${{ inputs.REPOSITORY_URL }}
@@ -78,7 +83,7 @@ jobs:
       - name: Load Config
         run: |
           rm -rf OpenWRT/.config
-          mv .config OpenWRT/.config
+          mv ${{ inputs.LOAD_CUSTOM_CONFIG_FILE }} OpenWRT/.config
 
       # 下载依赖
       - name: Download Package
