@@ -6,11 +6,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
-      VERSION_NAME:
-        description: "版本名称"
-        type: string
-        required: true
-        default: "firmware"
       REPOSITORY_URL:
         description: "Url"
         type: string
@@ -26,7 +21,12 @@ on:
         type: string
         required: true
         default: "lastest"
-      LOAD_CUSTOM_CONFIG_FILE:
+      VERSION_NAME:
+        description: "版本名称"
+        type: string
+        required: true
+        default: "firmware"
+      CUSTOM_CONFIG_FILE:
         description: "配置文件"
         type: string
         required: true
@@ -83,7 +83,7 @@ jobs:
       - name: Load Config
         run: |
           rm -rf OpenWRT/.config
-          mv ${{ inputs.LOAD_CUSTOM_CONFIG_FILE }} OpenWRT/.config
+          mv ${{ inputs.CUSTOM_CONFIG_FILE }} OpenWRT/.config
 
       # 下载依赖
       - name: Download Package
