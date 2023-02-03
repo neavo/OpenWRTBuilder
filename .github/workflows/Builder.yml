@@ -96,7 +96,7 @@ jobs:
       - name: Compile Firmware
         run: |
           cd OpenWRT
-          make -j$(nproc)
+          make V=s -j$(nproc)
 
       # 上传固件
       - name: Upload Firmware
