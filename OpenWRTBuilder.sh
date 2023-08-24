@@ -25,7 +25,7 @@ sudo apt autoremove --purge
 sudo apt clean
 
 # 克隆源码
-rm -rf OpenWRT
+sudo rm -rf OpenWRT
 git clone $REPOSITORY_URL -b $REPOSITORY_BRANCH OpenWRT
 
 # 进入工作文件夹
