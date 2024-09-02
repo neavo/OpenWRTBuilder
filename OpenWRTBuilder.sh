@@ -5,7 +5,7 @@ echo
 
 REPOSITORY_URL="https://github.com/coolsnowwolf/lede"
 REPOSITORY_BRANCH="master"
-REPOSITORY_COMMIT_ID="fdd69dee65c8431b047eac7bb9a2e662dd189ba9"
+REPOSITORY_COMMIT_ID="75c1433842b25470d112afd0b3555e6999e2e096"
 CONFIG_FILE="https://raw.githubusercontent.com/neavo/OpenWRTBuilder/main/.config"
 
 echo "========================================================================================="
