@@ -44,7 +44,7 @@ fi
 
 # 启用 SSR Plus
 sed -i "/helloworld/d" "feeds.conf.default"
-echo "src-git helloworld https://github.com/fw876/helloworld.git;main" >> "feeds.conf.default"
+echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
 
 # 修改默认账号密码为 root/root
 sed -i 's/root:::0:99999:7:::/root:$1$CFXmlfB0$DVrgJi586PAQHopcp1NDs1:18473:0:99999:7:::/g' ./package/base-files/files/etc/shadow
